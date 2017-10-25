@@ -25,23 +25,19 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-class Player {
-    constructor() {
+var Player = function() {}
 
-    }
+Player.prototype.update = function() {
 
-    update() {
+};
 
-    }
+Player.prototype.render = function() {
 
-    render() {
+};
 
-    }
+Player.prototype.handleInput = function() {
 
-    handleInput() {
-
-    }
-}
+};
 
 
 // Now instantiate your objects.
