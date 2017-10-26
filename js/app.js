@@ -29,7 +29,12 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-var Player = function() {}
+var Player = function(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.sprite = 'images/char-boy.png';
+}
 
 Player.prototype.update = function() {
 
@@ -48,7 +53,7 @@ Player.prototype.handleInput = function(keyPressed) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var player = {},
+var player = new Player(100, 200, 20), // basic test player
     allEnemies = [];
 
 var enemy = new Enemy(0, 0, 20); // basic test enemy to change later
