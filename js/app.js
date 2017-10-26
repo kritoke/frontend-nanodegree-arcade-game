@@ -17,7 +17,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    dt += dt * this.speed;
+    this.x += dt * this.speed;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -63,6 +63,8 @@ Player.prototype.handleInput = function(keyPressed) {
 };
 
 var collisionCheck = function() {
+
+    // keep player within the canvas of the game
     if (player.x > 400) {
         player.x = 400;
     } else if (player.x < 0) {
@@ -72,8 +74,6 @@ var collisionCheck = function() {
     } else if (player.y < -10) {
         player.y = -10;
     }
-
-    console.log(player.y);
 };
 
 
@@ -84,7 +84,7 @@ var collisionCheck = function() {
 var player = new Player(200, 380, 100), // basic test player
     allEnemies = [];
 
-var enemy = new Enemy(0, 0, 20); // basic test enemy to change later
+var enemy = new Enemy(0, 60, 70); // basic test enemy to change later
 allEnemies.push(enemy);
 
 // This listens for key presses and sends the keys to your
