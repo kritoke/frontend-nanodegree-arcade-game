@@ -35,7 +35,7 @@ Player.prototype.render = function() {
 
 };
 
-Player.prototype.handleInput = function() {
+Player.prototype.handleInput = function(keyPressed) {
 
 };
 
