@@ -69,8 +69,8 @@ var collisionCheck = function() {
         player.x = 0;
     } else if (player.y > 380) {
         player.y = 380;
-    } else if (player.y < -20) {
-        player.y = -20;
+    } else if (player.y < -10) {
+        player.y = -10;
     }
 
     console.log(player.y);
