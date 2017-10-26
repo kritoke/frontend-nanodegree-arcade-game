@@ -59,6 +59,21 @@ Player.prototype.handleInput = function(keyPressed) {
             this.y += this.speed - 20;
             break;
     }
+    collisionCheck();
+};
+
+var collisionCheck = function() {
+    if (player.x > 400) {
+        player.x = 400;
+    } else if (player.x < 0) {
+        player.x = 0;
+    } else if (player.y > 380) {
+        player.y = 380;
+    } else if (player.y < -20) {
+        player.y = -20;
+    }
+
+    console.log(player.y);
 };
 
 
