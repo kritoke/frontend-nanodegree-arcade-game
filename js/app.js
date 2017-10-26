@@ -53,10 +53,10 @@ Player.prototype.handleInput = function(keyPressed) {
             this.x += this.speed;
             break;
         case 'up':
-            this.y -= this.speed;
+            this.y -= this.speed - 20;
             break;
         case 'down':
-            this.y += this.speed;
+            this.y += this.speed - 20;
             break;
     }
 };
