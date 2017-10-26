@@ -45,7 +45,20 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(keyPressed) {
-
+    switch (keyPressed) {
+        case 'left':
+            this.x -= this.speed;
+            break;
+        case 'right':
+            this.x += this.speed;
+            break;
+        case 'up':
+            this.y -= this.speed;
+            break;
+        case 'down':
+            this.y += this.speed;
+            break;
+    }
 };
 
 
@@ -53,7 +66,7 @@ Player.prototype.handleInput = function(keyPressed) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var player = new Player(100, 200, 20), // basic test player
+var player = new Player(200, 380, 100), // basic test player
     allEnemies = [];
 
 var enemy = new Enemy(0, 0, 20); // basic test enemy to change later
