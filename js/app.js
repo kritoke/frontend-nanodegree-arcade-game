@@ -51,6 +51,9 @@ Player.prototype.handleInput = function(keyPressed) {
 var player = {},
     allEnemies = [];
 
+var enemy = new Enemy(0, 0, 20); // basic test enemy to change later
+allEnemies.push(enemy);
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -64,4 +67,3 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-main();
