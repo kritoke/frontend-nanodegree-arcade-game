@@ -87,8 +87,15 @@ var collisionCheck = function() {
 var player = new Player(200, 380, 100), // basic test player
     allEnemies = [];
 
-var enemy = new Enemy(0, 60, 70); // basic test enemy to change later
-allEnemies.push(enemy);
+var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
+    let newEnemy = new Enemy(x, y, speed);
+    allEnemies.push(newEnemy);
+};
+
+generateEnemy();
+generateEnemy();
+generateEnemy();
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
