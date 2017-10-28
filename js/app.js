@@ -90,9 +90,10 @@ Player.prototype.reset = function() {
     setTimeout(function() { ctx.clearRect(0, 0, 500, 500) }, 750);
 }
 
-Player.prototype.sendMessage = function(message, color) {
+Player.prototype.sendMessage = function(message, size, style, color) {
+    ctx.clearRect(0, 0, 500, 500)
     ctx.fillStyle = color;
-    ctx.font = '20pt semi-bold serif';
+    ctx.font = size + 'pt ' + style + ' serif';
     ctx.fillText(message, 10, 35);
 }
 
@@ -105,7 +106,7 @@ Player.prototype.loserCheck = function() {
             player.y + 50 > enemy.y) {
 
             // set losing message at top
-            player.sendMessage('YOU LOST!', 'red');
+            player.sendMessage('YOU LOST!', 20, 'semi-bold', 'red');
 
             // reset board after losing
             player.reset();
@@ -117,7 +118,7 @@ Player.prototype.loserCheck = function() {
 Player.prototype.winnerCheck = function() {
     if (player.y === -10) {
         // set winning message at top
-        player.sendMessage('YOU WON!', 'blue');
+        player.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
         // reset board after winning, delay it so the user sits in winning position for a bit
         setTimeout(player.reset, 700);
     }
