@@ -1,3 +1,9 @@
+// global variables
+// set new player in the bottom center, create a blank array for enemies to be stored, enemy amount variable
+var player = new Player(200, 380, 100),
+    allEnemies = [],
+    enemyNumber = 3;
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -83,11 +89,13 @@ Player.prototype.handleInput = function(keyPressed) {
 
 // sets player back to the start in the bottom center
 Player.prototype.reset = function() {
-    // put player back to starting poitn
+    // put player back to starting point
     player.x = 200;
     player.y = 380;
+
     // delay the clearing of a message so player can read it
     setTimeout(function() { ctx.clearRect(0, 0, 500, 500) }, 750);
+    player.sendMessage('Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl', 10, '', 'black')
 }
 
 Player.prototype.sendMessage = function(message, size, style, color) {
@@ -142,20 +150,21 @@ Player.prototype.collisionCheck = function() {
     player.loserCheck();
 };
 
-// set new player in the bottom center, create a blank array for enemies to be stored
-var player = new Player(200, 380, 100),
-    allEnemies = [];
-
 // create an enemy using randomly generated or assign based on provided parameters
 var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
     let newEnemy = new Enemy(x, y, speed);
     allEnemies.push(newEnemy);
 };
 
-// create three enemies
-generateEnemy();
-generateEnemy();
-generateEnemy();
+// create the enemeyNumber variable amount of enemies using random default parameters
+var generateRandomEnemies = function() {
+    for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
+        generateEnemy();
+    }
+};
+
+// generate the set enemies using defaults.
+generateRandomEnemies();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
