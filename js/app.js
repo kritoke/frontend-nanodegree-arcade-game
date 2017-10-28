@@ -98,8 +98,6 @@ Player.prototype.loserCheck = function() {
 }
 
 Player.prototype.collisionCheck = function() {
-    let currentPlayer = this;
-    let userMessage = '';
 
     // keep player within the canvas of the game
     if (player.x > 400) {
