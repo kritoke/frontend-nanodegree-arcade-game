@@ -64,7 +64,14 @@ Player.prototype.handleInput = function(keyPressed) {
     }
 };
 
+Player.prototype.reset = function() {
+    player.x = 200;
+    player.y = 380;
+}
+
 Player.prototype.collisionCheck = function() {
+    let currentPlayer = this;
+
     // keep player within the canvas of the game
     if (player.x > 400) {
         player.x = 400;
@@ -75,7 +82,19 @@ Player.prototype.collisionCheck = function() {
     } else if (player.y < -10) {
         player.y = -10;
     }
+
+    // reset user's location to start if collided with enemy
+    allEnemies.forEach(function(enemy) {
+        if (player.x < enemy.x + 50 &&
+            player.x + 50 > enemy.x &&
+            player.y < enemy.y + 50 &&
+            player.y + 50 > enemy.y) {
+            player.reset();
+        }
+    });
 };
+
+
 
 
 // Now instantiate your objects.
