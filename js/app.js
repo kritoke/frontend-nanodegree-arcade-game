@@ -68,9 +68,11 @@ Player.prototype.handleInput = function(keyPressed) {
 
 // sets player back to the start in the bottom center
 Player.prototype.reset = function() {
+    // put player back to starting poitn
     player.x = 200;
     player.y = 380;
-    ctx.clearRect(0, 0, 500, 500);
+    // delay the clearing of a message so player can read it
+    setTimeout(function() { ctx.clearRect(0, 0, 500, 500) }, 750);
 }
 
 Player.prototype.sendMessage = function(message, color) {
@@ -90,8 +92,8 @@ Player.prototype.loserCheck = function() {
             // set losing message at top
             player.sendMessage('YOU LOST!', 'red');
 
-            // delay calling reset so user can see the lost message
-            setTimeout(player.reset, 350);
+            // reset board after losing
+            player.reset();
         }
     });
 }
@@ -99,8 +101,10 @@ Player.prototype.loserCheck = function() {
 // reset user's location to start after telling them they won 
 Player.prototype.winnerCheck = function() {
     if (player.y === -10) {
+        // set winning message at top
         player.sendMessage('YOU WON!', 'blue');
-        setTimeout(player.reset, 750);
+        // reset board after winning, delay it so the user sits in winning position for a bit
+        setTimeout(player.reset, 700);
     }
 }
 
