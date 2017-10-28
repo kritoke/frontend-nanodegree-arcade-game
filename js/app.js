@@ -1,9 +1,3 @@
-// global variables
-// set new player in the bottom center, create a blank array for enemies to be stored, enemy amount variable
-var player = new Player(200, 380, 100),
-    allEnemies = [],
-    enemyNumber = 3;
-
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -93,6 +87,10 @@ Player.prototype.reset = function() {
     player.x = 200;
     player.y = 380;
 
+    // create new enemies and clear the old ones
+    allEnemies.length = 0;
+    generateRandomEnemies();
+
     // delay the clearing of a message so player can read it
     setTimeout(function() { ctx.clearRect(0, 0, 500, 500) }, 750);
     player.sendMessage('Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl', 10, '', 'black')
@@ -149,6 +147,12 @@ Player.prototype.boundsCheck = function() {
 Player.prototype.collisionCheck = function() {
     player.loserCheck();
 };
+
+// global variables
+// set new player in the bottom center, create a blank array for enemies to be stored, enemy amount variable
+var player = new Player(200, 380, 100),
+    allEnemies = [],
+    enemyNumber = 3;
 
 // create an enemy using randomly generated or assign based on provided parameters
 var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
