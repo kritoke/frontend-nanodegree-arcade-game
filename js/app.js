@@ -39,6 +39,7 @@ var Player = function(x, y, speed) {
 
 // call a check for out of bounds or enemy collisions everytime engine updates character
 Player.prototype.update = function() {
+    this.boundsCheck();
     this.collisionCheck();
 };
 
@@ -97,9 +98,8 @@ Player.prototype.loserCheck = function() {
     });
 }
 
-Player.prototype.collisionCheck = function() {
-
-    // keep player within the canvas of the game
+// keep player within the canvas of the game
+Player.prototype.boundsCheck = function() {
     if (player.x > 400) {
         player.x = 400;
     } else if (player.x < 0) {
@@ -109,6 +109,10 @@ Player.prototype.collisionCheck = function() {
     } else if (player.y < -10) {
         player.y = -10;
     }
+}
+
+// check for collisions of the user.
+Player.prototype.collisionCheck = function() {
 
     player.loserCheck();
 };
