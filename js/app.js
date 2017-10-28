@@ -81,7 +81,6 @@ Player.prototype.sendMessage = function(message, color) {
 
 // reset user's location to start if collided with enemy
 Player.prototype.loserCheck = function() {
-
     allEnemies.forEach(function(enemy) {
         if (player.x < enemy.x + 50 &&
             player.x + 50 > enemy.x &&
@@ -113,7 +112,6 @@ Player.prototype.boundsCheck = function() {
 
 // check for collisions of the user.
 Player.prototype.collisionCheck = function() {
-
     player.loserCheck();
 };
 
