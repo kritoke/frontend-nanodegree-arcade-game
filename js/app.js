@@ -69,10 +69,37 @@ Player.prototype.handleInput = function(keyPressed) {
 Player.prototype.reset = function() {
     player.x = 200;
     player.y = 380;
+    ctx.clearRect(0, 0, 500, 500);
+}
+
+Player.prototype.sendMessage = function(message, color) {
+    ctx.fillStyle = color;
+    ctx.font = '20pt semi-bold serif';
+    ctx.fillText(message, 10, 35);
+}
+
+// reset user's location to start if collided with enemy
+Player.prototype.loserCheck = function() {
+
+    allEnemies.forEach(function(enemy) {
+        if (player.x < enemy.x + 50 &&
+            player.x + 50 > enemy.x &&
+            player.y < enemy.y + 50 &&
+            player.y + 50 > enemy.y) {
+
+            // set losing message at top
+            userMessage = 'YOU LOST!';
+            player.sendMessage(userMessage, 'red');
+
+            // delay calling reset so user can see the lost message
+            setTimeout(player.reset, 350);
+        }
+    });
 }
 
 Player.prototype.collisionCheck = function() {
     let currentPlayer = this;
+    let userMessage = '';
 
     // keep player within the canvas of the game
     if (player.x > 400) {
@@ -85,15 +112,7 @@ Player.prototype.collisionCheck = function() {
         player.y = -10;
     }
 
-    // reset user's location to start if collided with enemy
-    allEnemies.forEach(function(enemy) {
-        if (player.x < enemy.x + 50 &&
-            player.x + 50 > enemy.x &&
-            player.y < enemy.y + 50 &&
-            player.y + 50 > enemy.y) {
-            player.reset();
-        }
-    });
+    player.loserCheck();
 };
 
 // set new player in the bottom center, create a blank array for enemies to be stored
