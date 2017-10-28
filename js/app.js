@@ -51,6 +51,21 @@ Player.prototype.render = function() {
 // move player around the screen based on key presses
 Player.prototype.handleInput = function(keyPressed) {
     switch (keyPressed) {
+        case 'b':
+            this.sprite = 'images/char-boy.png';
+            break;
+        case 'c':
+            this.sprite = 'images/char-cat-girl.png';
+            break;
+        case 'g':
+            this.sprite = 'images/char-princess-girl.png';
+            break;
+        case 'h':
+            this.sprite = 'images/char-horn-girl.png';
+            break;
+        case 'p':
+            this.sprite = 'images/char-pink-girl.png';
+            break;
         case 'left':
             this.x -= this.speed;
             break;
@@ -148,7 +163,12 @@ document.addEventListener('keyup', function(e) {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        66: 'b',
+        67: 'c',
+        71: 'g',
+        72: 'h',
+        80: 'p'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
