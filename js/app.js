@@ -28,9 +28,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// instantiate the Player's initial settings
 
 var Player = function(x, y, speed) {
     this.x = x;
@@ -39,14 +37,17 @@ var Player = function(x, y, speed) {
     this.sprite = 'images/char-boy.png';
 }
 
+// call a check for out of bounds or enemy collisions everytime engine updates character
 Player.prototype.update = function() {
     this.collisionCheck();
 };
 
+// draw the player on the screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// move player around the screen based on key presses
 Player.prototype.handleInput = function(keyPressed) {
     switch (keyPressed) {
         case 'left':
@@ -64,6 +65,7 @@ Player.prototype.handleInput = function(keyPressed) {
     }
 };
 
+// sets player back to the start in the bottom center
 Player.prototype.reset = function() {
     player.x = 200;
     player.y = 380;
@@ -94,25 +96,20 @@ Player.prototype.collisionCheck = function() {
     });
 };
 
-
-
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
-var player = new Player(200, 380, 100), // basic test player
+// set new player in the bottom center, create a blank array for enemies to be stored
+var player = new Player(200, 380, 100),
     allEnemies = [];
 
+// create an enemy using randomly generated or assign based on provided parameters
 var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
     let newEnemy = new Enemy(x, y, speed);
     allEnemies.push(newEnemy);
 };
 
+// create three enemies
 generateEnemy();
 generateEnemy();
 generateEnemy();
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
