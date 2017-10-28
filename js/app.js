@@ -29,7 +29,6 @@ Enemy.prototype.render = function() {
 };
 
 // instantiate the Player's initial settings
-
 var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
@@ -88,8 +87,7 @@ Player.prototype.loserCheck = function() {
             player.y + 50 > enemy.y) {
 
             // set losing message at top
-            userMessage = 'YOU LOST!';
-            player.sendMessage(userMessage, 'red');
+            player.sendMessage('YOU LOST!', 'red');
 
             // delay calling reset so user can see the lost message
             setTimeout(player.reset, 350);
