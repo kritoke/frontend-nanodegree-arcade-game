@@ -40,6 +40,7 @@ var Player = function(x, y, speed) {
 Player.prototype.update = function() {
     this.boundsCheck();
     this.collisionCheck();
+    this.winnerCheck();
 };
 
 // draw the player on the screen
@@ -78,7 +79,7 @@ Player.prototype.sendMessage = function(message, color) {
     ctx.fillText(message, 10, 35);
 }
 
-// reset user's location to start if collided with enemy
+// reset user's location to start if collided with enemy after telling them they lost
 Player.prototype.loserCheck = function() {
     allEnemies.forEach(function(enemy) {
         if (player.x < enemy.x + 50 &&
@@ -93,6 +94,14 @@ Player.prototype.loserCheck = function() {
             setTimeout(player.reset, 350);
         }
     });
+}
+
+// reset user's location to start after telling them they won 
+Player.prototype.winnerCheck = function() {
+    if (player.y === -10) {
+        player.sendMessage('YOU WON!', 'blue');
+        setTimeout(player.reset, 750);
+    }
 }
 
 // keep player within the canvas of the game
