@@ -40,7 +40,7 @@ var Player = function(x, y, speed) {
 }
 
 Player.prototype.update = function() {
-
+    this.collisionCheck();
 };
 
 Player.prototype.render = function() {
@@ -62,11 +62,9 @@ Player.prototype.handleInput = function(keyPressed) {
             this.y += this.speed - 20;
             break;
     }
-    collisionCheck();
 };
 
-var collisionCheck = function() {
-
+Player.prototype.collisionCheck = function() {
     // keep player within the canvas of the game
     if (player.x > 400) {
         player.x = 400;
