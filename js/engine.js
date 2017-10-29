@@ -64,16 +64,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-
-        // set the directions to output at the bottom of the canvas
-        let canvas = document.getElementsByTagName('canvas');
-        let canvasTag = canvas[0];
-        let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
-        let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl';
-
-        infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p>`;
-        document.body.insertBefore(infoArea, canvasTag[0]);
-
+        drawInfoArea(); // draw bottom info area with score, instructions
         lastTime = Date.now();
         main();
     }
