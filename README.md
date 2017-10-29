@@ -3,7 +3,7 @@ frontend-nanodegree-arcade-game
 
 ## Game Instructions
 
-* Use the arrow keys to navigate around the area.
+* Use the arrow keys to navigate around the area, it is not touch enabled.
 * To win a game, you must reach the water and not touch one of the ladybugs.
 * You can change your player image by pressing one of the following:
   - b for boy
