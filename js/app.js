@@ -83,7 +83,6 @@ Player.prototype.handleInput = function(keyPressed) {
 
 // sets player back to the start in the bottom center
 Player.prototype.reset = function() {
-    let playerMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl';
     // put player back to starting point
     player.x = 200;
     player.y = 380;
@@ -95,7 +94,6 @@ Player.prototype.reset = function() {
     // delay the clearing of a message so player can read it
     setTimeout(function() {
         ctx.clearRect(0, 0, 500, 500);
-        player.sendMessage(playerMessage, 10, '', 'black');
     }, 750);
 }
 
@@ -155,7 +153,9 @@ Player.prototype.collisionCheck = function() {
 // set new player in the bottom center, create a blank array for enemies to be stored, enemy amount variable
 var player = new Player(200, 380, 100),
     allEnemies = [],
-    enemyNumber = 3;
+    enemyNumber = 3,
+    infoArea = document.createElement('div');
+
 
 // create an enemy using randomly generated or assign based on provided parameters
 var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
