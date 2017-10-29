@@ -64,6 +64,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
+        player.sendMessage('Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl', 10, '', 'black');
         lastTime = Date.now();
         main();
     }

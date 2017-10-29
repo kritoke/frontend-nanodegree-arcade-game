@@ -83,6 +83,7 @@ Player.prototype.handleInput = function(keyPressed) {
 
 // sets player back to the start in the bottom center
 Player.prototype.reset = function() {
+    let playerMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl';
     // put player back to starting point
     player.x = 200;
     player.y = 380;
@@ -92,8 +93,10 @@ Player.prototype.reset = function() {
     generateRandomEnemies();
 
     // delay the clearing of a message so player can read it
-    setTimeout(function() { ctx.clearRect(0, 0, 500, 500) }, 750);
-    player.sendMessage('Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl', 10, '', 'black')
+    setTimeout(function() {
+        ctx.clearRect(0, 0, 500, 500);
+        player.sendMessage(playerMessage, 10, '', 'black');
+    }, 750);
 }
 
 Player.prototype.sendMessage = function(message, size, style, color) {
