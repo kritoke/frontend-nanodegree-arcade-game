@@ -187,8 +187,8 @@ var generateRandomEnemies = function() {
     }
 };
 
+// set the directions to output at the bottom of the canvas
 var drawInfoArea = function() {
-    // set the directions to output at the bottom of the canvas
     let canvas = document.getElementsByTagName('canvas');
     let canvasTag = canvas[0];
     let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
