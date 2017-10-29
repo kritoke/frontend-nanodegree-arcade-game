@@ -34,7 +34,7 @@ var Player = function(x, y, speed) {
     this.y = y;
     this.speed = speed;
     this.sprite = 'images/char-boy.png';
-}
+};
 
 // call a check for out of bounds or enemy collisions everytime engine updates character
 Player.prototype.update = function() {
@@ -104,14 +104,14 @@ Player.prototype.reset = function() {
     setTimeout(function() {
         ctx.clearRect(0, 0, 500, 500);
     }, 750);
-}
+};
 
 Player.prototype.sendMessage = function(message, size, style, color) {
     ctx.clearRect(0, 0, 500, 500)
     ctx.fillStyle = color;
     ctx.font = size + 'pt ' + style + ' serif';
     ctx.fillText(message, 10, 35);
-}
+};
 
 // reset user's location to start if collided with enemy after telling them they lost
 Player.prototype.loserCheck = function() {
@@ -128,7 +128,7 @@ Player.prototype.loserCheck = function() {
             player.reset();
         }
     });
-}
+};
 
 // reset user's location to start after telling them they won 
 Player.prototype.winnerCheck = function() {
@@ -139,7 +139,7 @@ Player.prototype.winnerCheck = function() {
         // reset board after winning, delay it so the user sits in winning position for a bit
         player.reset();
     }
-}
+};
 
 // display the score at the bottom
 Player.prototype.displayScore = function(canvasTag) {
@@ -158,7 +158,7 @@ Player.prototype.boundsCheck = function() {
     } else if (player.y < -10) {
         player.y = -10;
     }
-}
+};
 
 // check for collisions of the user.
 Player.prototype.collisionCheck = function() {
@@ -166,12 +166,11 @@ Player.prototype.collisionCheck = function() {
 };
 
 // global variables
-// set new player in the bottom center, create a blank array for enemies to be stored, enemy amount variable
-var player = new Player(200, 380, 100),
-    allEnemies = [],
-    enemyNumber = 3,
-    infoArea = document.createElement('div'),
-    score = 0;
+var player = new Player(200, 380, 100), // set new player in the bottom center
+    allEnemies = [], // create a blank array for enemies to be stored
+    enemyNumber = 3, // enemy amount variable
+    infoArea = document.createElement('div'), // set div where score and instructions go
+    score = 0; // set initial score
 
 
 // create an enemy using randomly generated or assign based on provided parameters
@@ -204,7 +203,7 @@ var drawInfoArea = function() {
 var newGame = function() {
     score = 0;
     player.reset();
-}
+};
 
 // generate the set enemies using defaults.
 generateRandomEnemies();
