@@ -11,4 +11,5 @@ frontend-nanodegree-arcade-game
   - h for horn girl
   - p for pink girl
   - g for princess girl
-* To add an enemy, press e
+* To add an enemy, press e.
+* To start over, press s.

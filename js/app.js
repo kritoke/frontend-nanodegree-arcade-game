@@ -70,6 +70,9 @@ Player.prototype.handleInput = function(keyPressed) {
         case 'p':
             this.sprite = 'images/char-pink-girl.png';
             break;
+        case 's':
+            newGame();
+            break;
         case 'left':
             this.x -= this.speed;
             break;
@@ -191,12 +194,17 @@ var drawInfoArea = function() {
     let canvasTag = canvas[0];
     let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
     let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
-    let additionalMessage = 'To add another enemy, press e.'
+    let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
 
     infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
     document.body.insertBefore(infoArea, canvasTag[0]);
     player.displayScore(canvasTag);
 };
+
+var newGame = function() {
+    score = 0;
+    player.reset();
+}
 
 // generate the set enemies using defaults.
 generateRandomEnemies();
@@ -214,7 +222,8 @@ document.addEventListener('keyup', function(e) {
         69: 'e',
         71: 'g',
         72: 'h',
-        80: 'p'
+        80: 'p',
+        83: 's'
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
