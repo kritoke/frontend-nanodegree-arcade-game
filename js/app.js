@@ -137,7 +137,7 @@ Player.prototype.winnerCheck = function() {
         player.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
         score += 1;
         // reset board after winning, delay it so the user sits in winning position for a bit
-        player.reset();
+        setTimeout(player.reset, 50);
     }
 };
 
