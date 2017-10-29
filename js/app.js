@@ -57,6 +57,10 @@ Player.prototype.handleInput = function(keyPressed) {
         case 'c':
             this.sprite = 'images/char-cat-girl.png';
             break;
+        case 'e':
+            generateEnemy();
+            enemyCount++;
+            break;
         case 'g':
             this.sprite = 'images/char-princess-girl.png';
             break;
@@ -88,7 +92,6 @@ Player.prototype.reset = function() {
     player.y = 380;
 
     // create new enemies and clear the old ones
-    allEnemies.length = 0;
     generateRandomEnemies();
 
     // draw the bottom info area
@@ -176,6 +179,7 @@ var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.r
 
 // create the enemeyNumber variable amount of enemies using random default parameters
 var generateRandomEnemies = function() {
+    allEnemies.length = 0;
     for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
         generateEnemy();
     }
@@ -186,9 +190,10 @@ var drawInfoArea = function() {
     let canvas = document.getElementsByTagName('canvas');
     let canvasTag = canvas[0];
     let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
-    let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl';
+    let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
+    let additionalMessage = 'To add another enemy, press e.'
 
-    infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p>`;
+    infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
     document.body.insertBefore(infoArea, canvasTag[0]);
     player.displayScore(canvasTag);
 };
@@ -206,6 +211,7 @@ document.addEventListener('keyup', function(e) {
         40: 'down',
         66: 'b',
         67: 'c',
+        69: 'e',
         71: 'g',
         72: 'h',
         80: 'p'
