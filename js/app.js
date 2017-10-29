@@ -153,8 +153,7 @@ Player.prototype.collisionCheck = function() {
 // set new player in the bottom center, create a blank array for enemies to be stored, enemy amount variable
 var player = new Player(200, 380, 100),
     allEnemies = [],
-    enemyNumber = 3,
-    infoArea = document.createElement('div');
+    enemyNumber = 3;
 
 
 // create an enemy using randomly generated or assign based on provided parameters
