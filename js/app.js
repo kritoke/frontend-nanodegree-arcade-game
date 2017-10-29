@@ -129,7 +129,7 @@ Player.prototype.winnerCheck = function() {
         // set winning message at top
         player.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
         // reset board after winning, delay it so the user sits in winning position for a bit
-        setTimeout(player.reset, 700);
+        player.reset();
     }
 }
 
