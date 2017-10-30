@@ -1,3 +1,16 @@
+class User {
+    constructor(x, y, speed, sprite) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.sprite = sprite;
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
