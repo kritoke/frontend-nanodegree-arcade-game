@@ -31,13 +31,11 @@ class Enemy extends User {
     }
 }
 
-// instantiate the Player's initial settings
-var Player = function(x, y, speed) {
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
-    this.sprite = 'images/char-boy.png';
-};
+class Player extends User {
+    constructor(x, y, speed, sprite = 'images/char-boy.png') {
+        this.sprite = sprite;
+    }
+}
 
 // call a check for out of bounds or enemy collisions everytime engine updates character
 Player.prototype.update = function() {
