@@ -64,7 +64,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-        drawInfoArea(); // draw bottom info area with score, instructions
+        player.drawInfoArea(); // draw bottom info area with score, instructions
         lastTime = Date.now();
         main();
     }

@@ -71,7 +71,7 @@ Player.prototype.handleInput = function(keyPressed) {
             this.sprite = 'images/char-pink-girl.png';
             break;
         case 's':
-            newGame();
+            this.newGame();
             break;
         case 'left':
             this.x -= this.speed;
@@ -88,24 +88,7 @@ Player.prototype.handleInput = function(keyPressed) {
     }
 };
 
-// sets player back to the start in the bottom center
-Player.prototype.reset = function() {
-    // put player back to starting point
-    this.x = 200;
-    this.y = 380;
-
-    // create new enemies and clear the old ones
-    generateRandomEnemies();
-
-    // draw the bottom info area
-    drawInfoArea();
-
-    // delay the clearing of a message so player can read it
-    setTimeout(function() {
-        ctx.clearRect(0, 0, 500, 500);
-    }, 750);
-};
-
+// put a message at the top of the game canvas
 Player.prototype.sendMessage = function(message, size, style, color) {
     ctx.clearRect(0, 0, 500, 500)
     ctx.fillStyle = color;
@@ -115,18 +98,18 @@ Player.prototype.sendMessage = function(message, size, style, color) {
 
 // reset user's location to start if collided with enemy after telling them they lost
 Player.prototype.loserCheck = function() {
-    let player = this;
+    let currPlayer = this;
     allEnemies.forEach(function(enemy) {
-        if (player.x < enemy.x + 50 &&
-            player.x + 50 > enemy.x &&
-            player.y < enemy.y + 50 &&
-            player.y + 50 > enemy.y) {
+        if (currPlayer.x < enemy.x + 50 &&
+            currPlayer.x + 50 > enemy.x &&
+            currPlayer.y < enemy.y + 50 &&
+            currPlayer.y + 50 > enemy.y) {
 
             // set losing message at top
-            player.sendMessage('YOU LOST!', 20, 'semi-bold', 'red');
+            currPlayer.sendMessage('YOU LOST!', 20, 'semi-bold', 'red');
 
             // reset board after losing
-            player.reset();
+            currPlayer.reset();
         }
     });
 };
@@ -166,6 +149,24 @@ Player.prototype.collisionCheck = function() {
     this.loserCheck();
 };
 
+// sets player back to the start in the bottom center
+Player.prototype.reset = function() {
+    // put player back to starting point
+    this.x = 200;
+    this.y = 380;
+
+    // create new enemies and clear the old ones
+    generateRandomEnemies();
+
+    // draw the bottom info area
+    this.drawInfoArea();
+
+    // delay the clearing of a message so player can read it
+    setTimeout(function() {
+        ctx.clearRect(0, 0, 500, 500);
+    }, 750);
+};
+
 // global variables
 var player = new Player(200, 380, 100), // set new player in the bottom center
     allEnemies = [], // create a blank array for enemies to be stored
@@ -189,7 +190,7 @@ var generateRandomEnemies = function() {
 };
 
 // set the directions to output at the bottom of the canvas
-var drawInfoArea = function() {
+Player.prototype.drawInfoArea = function() {
     let canvas = document.getElementsByTagName('canvas');
     let canvasTag = canvas[0];
     let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
@@ -198,7 +199,7 @@ var drawInfoArea = function() {
 
     infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
     document.body.insertBefore(infoArea, canvasTag[0]);
-    player.displayScore(canvasTag);
+    this.displayScore(canvasTag);
 };
 
 Player.prototype.newGame = function() {
