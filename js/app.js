@@ -91,8 +91,8 @@ Player.prototype.handleInput = function(keyPressed) {
 // sets player back to the start in the bottom center
 Player.prototype.reset = function() {
     // put player back to starting point
-    player.x = 200;
-    player.y = 380;
+    this.x = 200;
+    this.y = 380;
 
     // create new enemies and clear the old ones
     generateRandomEnemies();
@@ -115,6 +115,7 @@ Player.prototype.sendMessage = function(message, size, style, color) {
 
 // reset user's location to start if collided with enemy after telling them they lost
 Player.prototype.loserCheck = function() {
+    let player = this;
     allEnemies.forEach(function(enemy) {
         if (player.x < enemy.x + 50 &&
             player.x + 50 > enemy.x &&
@@ -132,12 +133,12 @@ Player.prototype.loserCheck = function() {
 
 // reset user's location to start after telling them they won 
 Player.prototype.winnerCheck = function() {
-    if (player.y === -10) {
+    if (this.y === -10) {
         // set winning message at top
-        player.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
+        this.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
         score += 1;
-        // reset board after winning, delay it so the user sits in winning position for a bit
-        setTimeout(player.reset, 50);
+        // reset board after winning
+        this.reset();
     }
 };
 
@@ -149,20 +150,20 @@ Player.prototype.displayScore = function(canvasTag) {
 
 // keep player within the canvas of the game
 Player.prototype.boundsCheck = function() {
-    if (player.x > 400) {
-        player.x = 400;
-    } else if (player.x < 0) {
-        player.x = 0;
-    } else if (player.y > 380) {
-        player.y = 380;
-    } else if (player.y < -10) {
-        player.y = -10;
+    if (this.x > 400) {
+        this.x = 400;
+    } else if (this.x < 0) {
+        this.x = 0;
+    } else if (this.y > 380) {
+        this.y = 380;
+    } else if (this.y < -10) {
+        this.y = -10;
     }
 };
 
 // check for collisions of the user.
 Player.prototype.collisionCheck = function() {
-    player.loserCheck();
+    this.loserCheck();
 };
 
 // global variables
