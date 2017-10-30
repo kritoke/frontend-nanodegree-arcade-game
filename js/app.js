@@ -201,13 +201,10 @@ var drawInfoArea = function() {
     player.displayScore(canvasTag);
 };
 
-var newGame = function() {
+Player.prototype.newGame = function() {
     score = 0;
-    player.reset();
+    this.reset();
 };
-
-// generate the set enemies using defaults.
-generateRandomEnemies();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -228,3 +225,6 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// start the game with the default player
+player.newGame();
