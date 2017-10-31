@@ -35,19 +35,13 @@ class Player extends User {
     constructor(x, y, speed, sprite = 'images/char-boy.png') {
         this.sprite = sprite;
     }
+  
+    update() {
+      this.boundsCheck();
+      this.collisionCheck();
+      this.winnerCheck();
+    }
 }
-
-// call a check for out of bounds or enemy collisions everytime engine updates character
-Player.prototype.update = function() {
-    this.boundsCheck();
-    this.collisionCheck();
-    this.winnerCheck();
-};
-
-// draw the player on the screen
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
 // move player around the screen based on key presses
 Player.prototype.handleInput = function(keyPressed) {
