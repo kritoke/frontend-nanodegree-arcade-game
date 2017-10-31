@@ -125,20 +125,20 @@ class Player extends User {
         infoArea.innerHTML = `<p>Current Score: ${score}</p> ${infoArea.innerHTML}`;
         document.body.insertBefore(infoArea, canvasTag[0]);
     }
-}
-
-// keep player within the canvas of the game
-Player.prototype.boundsCheck = function() {
-    if (this.x > 400) {
-        this.x = 400;
-    } else if (this.x < 0) {
-        this.x = 0;
-    } else if (this.y > 380) {
-        this.y = 380;
-    } else if (this.y < -10) {
-        this.y = -10;
+  
+    // keep player within the canvas of the game
+    boundsCheck() {
+        if (this.x > 400) {
+            this.x = 400;
+        } else if (this.x < 0) {
+            this.x = 0;
+        } else if (this.y > 380) {
+            this.y = 380;
+        } else if (this.y < -10) {
+            this.y = -10;
+        }
     }
-};
+}
 
 // check for collisions of the user.
 Player.prototype.collisionCheck = function() {
