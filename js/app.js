@@ -36,52 +36,53 @@ class Player extends User {
         this.sprite = sprite;
     }
   
+    // check user's location against out of bounds, whether it collides with enemy, or wins
     update() {
       this.boundsCheck();
       this.collisionCheck();
       this.winnerCheck();
     }
-}
-
-// move player around the screen based on key presses
-Player.prototype.handleInput = function(keyPressed) {
-    switch (keyPressed) {
-        case 'b':
-            this.sprite = 'images/char-boy.png';
-            break;
-        case 'c':
-            this.sprite = 'images/char-cat-girl.png';
-            break;
-        case 'e':
-            generateEnemy();
-            enemyCount++;
-            break;
-        case 'g':
-            this.sprite = 'images/char-princess-girl.png';
-            break;
-        case 'h':
-            this.sprite = 'images/char-horn-girl.png';
-            break;
-        case 'p':
-            this.sprite = 'images/char-pink-girl.png';
-            break;
-        case 's':
-            this.newGame();
-            break;
-        case 'left':
-            this.x -= this.speed;
-            break;
-        case 'right':
-            this.x += this.speed;
-            break;
-        case 'up':
-            this.y -= this.speed - 20;
-            break;
-        case 'down':
-            this.y += this.speed - 20;
-            break;
+  
+    // move player around the screen based on key presses
+    handleInput(keyPressed) {
+        switch (keyPressed) {
+            case 'b':
+                this.sprite = 'images/char-boy.png';
+                break;
+            case 'c':
+                this.sprite = 'images/char-cat-girl.png';
+                break;
+            case 'e':
+                generateEnemy();
+                enemyCount++;
+                break;
+            case 'g':
+                this.sprite = 'images/char-princess-girl.png';
+                break;
+            case 'h':
+                this.sprite = 'images/char-horn-girl.png';
+                break;
+            case 'p':
+                this.sprite = 'images/char-pink-girl.png';
+                break;
+            case 's':
+                this.newGame();
+                break;
+            case 'left':
+                this.x -= this.speed;
+                break;
+            case 'right':
+                this.x += this.speed;
+                break;
+            case 'up':
+                this.y -= this.speed - 20;
+                break;
+            case 'down':
+                this.y += this.speed - 20;
+                break;
+        }
     }
-};
+}
 
 // put a message at the top of the game canvas
 Player.prototype.sendMessage = function(message, size, style, color) {
