@@ -90,25 +90,25 @@ class Player extends User {
         ctx.font = size + 'pt ' + style + ' serif';
         ctx.fillText(message, 10, 35);
     }
+  
+    // reset user's location to start if collided with enemy after telling them they lost
+    loserCheck() {
+        let currPlayer = this;
+        allEnemies.forEach(function(enemy) {
+            if (currPlayer.x < enemy.x + 50 &&
+                currPlayer.x + 50 > enemy.x &&
+                currPlayer.y < enemy.y + 50 &&
+                currPlayer.y + 50 > enemy.y) {
+
+                // set losing message at top
+                currPlayer.sendMessage('YOU LOST!', 20, 'semi-bold', 'red');
+
+                // reset board after losing
+                currPlayer.reset();
+            }
+        });
+    }
 }
-
-// reset user's location to start if collided with enemy after telling them they lost
-Player.prototype.loserCheck = function() {
-    let currPlayer = this;
-    allEnemies.forEach(function(enemy) {
-        if (currPlayer.x < enemy.x + 50 &&
-            currPlayer.x + 50 > enemy.x &&
-            currPlayer.y < enemy.y + 50 &&
-            currPlayer.y + 50 > enemy.y) {
-
-            // set losing message at top
-            currPlayer.sendMessage('YOU LOST!', 20, 'semi-bold', 'red');
-
-            // reset board after losing
-            currPlayer.reset();
-        }
-    });
-};
 
 // reset user's location to start after telling them they won 
 Player.prototype.winnerCheck = function() {
