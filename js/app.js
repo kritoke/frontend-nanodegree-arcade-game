@@ -108,18 +108,18 @@ class Player extends User {
             }
         });
     }
-}
-
-// reset user's location to start after telling them they won 
-Player.prototype.winnerCheck = function() {
-    if (this.y === -10) {
-        // set winning message at top
-        this.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
-        score += 1;
-        // reset board after winning
-        this.reset();
+  
+    // reset user's location to start after telling them they won 
+    winnerCheck() {
+        if (this.y === -10) {
+            // set winning message at top
+            this.sendMessage('YOU WON!', 20, 'semi-bold', 'blue');
+            score += 1;
+            // reset board after winning
+            this.reset();
+        }
     }
-};
+}
 
 // display the score at the bottom
 Player.prototype.displayScore = function(canvasTag) {
