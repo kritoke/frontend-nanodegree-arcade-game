@@ -138,30 +138,32 @@ class Player extends User {
             this.y = -10;
         }
     }
+
+    // check for collisions of the user.
+    collisionCheck() {
+        this.loserCheck();
+    }
+
+    // sets player back to the start in the bottom center
+    reset() {
+        // put player back to starting point
+        this.x = 200;
+        this.y = 380;
+
+        // create new enemies and clear the old ones
+        generateRandomEnemies();
+
+        // draw the bottom info area
+        this.drawInfoArea();
+
+        // delay the clearing of a message so player can read it
+        setTimeout(function() {
+            ctx.clearRect(0, 0, 500, 500);
+        }, 750);
+    }
 }
 
-// check for collisions of the user.
-Player.prototype.collisionCheck = function() {
-    this.loserCheck();
-};
 
-// sets player back to the start in the bottom center
-Player.prototype.reset = function() {
-    // put player back to starting point
-    this.x = 200;
-    this.y = 380;
-
-    // create new enemies and clear the old ones
-    generateRandomEnemies();
-
-    // draw the bottom info area
-    this.drawInfoArea();
-
-    // delay the clearing of a message so player can read it
-    setTimeout(function() {
-        ctx.clearRect(0, 0, 500, 500);
-    }, 750);
-};
 
 // global variables
 var player = new Player(200, 380, 100), // set new player in the bottom center
