@@ -16,4 +16,4 @@ frontend-nanodegree-arcade-game
 
 ## Starting the Game in Javascript
 
-Run player.newGame(); to start a new game.
+Run ``player.newGame();`` to start a new game.
