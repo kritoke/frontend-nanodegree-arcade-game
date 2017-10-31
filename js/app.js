@@ -22,6 +22,7 @@ class Enemy extends User {
     render() {
         super.render();
     }
+  
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
@@ -37,7 +38,9 @@ class Enemy extends User {
 
 var allEnemies = [], // create a blank array for enemies to be stored
     enemyNumber = 3, // enemy amount variable
-    score = 0; // set initial score
+    score = 0, // set initial score
+    infoArea = document.createElement('div'); // set div where score and instructions go
+
 
 // create an enemy using randomly generated or assign based on provided parameters
 var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
@@ -51,19 +54,6 @@ var generateRandomEnemies = function() {
     for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
         generateEnemy();
     }
-};
-
-// set the directions to output at the bottom of the canvas
-var drawInfoArea = function() {
-      let infoArea = document.createElement('div'); // set div where score and instructions go
-      let canvas = document.getElementsByTagName('canvas');
-      let canvasTag = canvas[0];
-      let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
-      let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
-      let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
-
-      infoArea.innerHTML = `<p>Current Score: ${score}</p> ${infoArea.innerHTML}<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
-      document.body.insertBefore(infoArea, canvasTag[0]);
 };
 
 class Player extends User {
@@ -177,6 +167,18 @@ class Player extends User {
     collisionCheck() {
         this.loserCheck();
     }
+  
+    // set the directions to output at the bottom of the canvas
+    drawInfoArea() {
+      let canvas = document.getElementsByTagName('canvas');
+      let canvasTag = canvas[0];
+      let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
+      let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
+      let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
+
+      infoArea.innerHTML = `<p>Current Score: ${score}</p><p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
+      document.body.insertBefore(infoArea, canvasTag[0]);
+    }
 
     // sets player back to the start in the bottom center
     reset() {
@@ -188,7 +190,7 @@ class Player extends User {
         generateRandomEnemies();
 
         // draw the bottom info area
-        drawInfoArea();
+        this.drawInfoArea();
 
         // delay the clearing of a message so player can read it
         setTimeout(function() {

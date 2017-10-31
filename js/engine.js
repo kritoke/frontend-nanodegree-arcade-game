@@ -45,10 +45,7 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
-        allEnemies.forEach(function(enemy) {
-            enemy.render();
-        });
-
+        render();
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -66,7 +63,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-        drawInfoArea(); // draw bottom info area with score, instructions
+        player.drawInfoArea(); // draw bottom info area with score, instructions
         lastTime = Date.now();
         main();
     }
@@ -139,6 +136,7 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+      
     }
 
     /* This function is called by the render function and is called on each game
