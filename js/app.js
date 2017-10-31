@@ -161,9 +161,26 @@ class Player extends User {
             ctx.clearRect(0, 0, 500, 500);
         }, 750);
     }
+  
+    // set the directions to output at the bottom of the canvas
+    drawInfoArea() {
+        let canvas = document.getElementsByTagName('canvas');
+        let canvasTag = canvas[0];
+        let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
+        let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
+        let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
+
+        infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
+        document.body.insertBefore(infoArea, canvasTag[0]);
+        this.displayScore(canvasTag);
+    }
+
+    // start a new game, reset score, run reset
+    newGame() {
+        score = 0;
+        this.reset();
+    }
 }
-
-
 
 // global variables
 var player = new Player(200, 380, 100), // set new player in the bottom center
@@ -185,24 +202,6 @@ var generateRandomEnemies = function() {
     for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
         generateEnemy();
     }
-};
-
-// set the directions to output at the bottom of the canvas
-Player.prototype.drawInfoArea = function() {
-    let canvas = document.getElementsByTagName('canvas');
-    let canvasTag = canvas[0];
-    let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
-    let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
-    let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
-
-    infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
-    document.body.insertBefore(infoArea, canvasTag[0]);
-    this.displayScore(canvasTag);
-};
-
-Player.prototype.newGame = function() {
-    score = 0;
-    this.reset();
 };
 
 // This listens for key presses and sends the keys to your
