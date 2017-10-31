@@ -166,7 +166,7 @@ class Player extends User {
 
     // set the directions to output at the bottom of the canvas with the current score
     drawInfoArea() {
-        let canvas = document.getElementsByTagName('canvas');
+        let canvas = document.getElementsByTagName('canvas'); // canvas for the game to take place
         let canvasTag = canvas[0];
         let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
         let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
