@@ -15,9 +15,13 @@ class User {
 // Enemies our player must avoid
 class Enemy extends User {
     constructor(x, y, speed, sprite = 'images/enemy-bug.png') {
+        super(x, y, speed);
         this.sprite = sprite;
     }
 
+    render() {
+        super.render();
+    }
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
@@ -31,9 +35,45 @@ class Enemy extends User {
     }
 }
 
+var allEnemies = [], // create a blank array for enemies to be stored
+    enemyNumber = 3, // enemy amount variable
+    score = 0; // set initial score
+
+// create an enemy using randomly generated or assign based on provided parameters
+var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
+    let newEnemy = new Enemy(x, y, speed);
+    allEnemies.push(newEnemy);
+};
+
+// create the enemeyNumber variable amount of enemies using random default parameters
+var generateRandomEnemies = function() {
+    allEnemies.length = 0;
+    for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
+        generateEnemy();
+    }
+};
+
+// set the directions to output at the bottom of the canvas
+var drawInfoArea = function() {
+      let infoArea = document.createElement('div'); // set div where score and instructions go
+      let canvas = document.getElementsByTagName('canvas');
+      let canvasTag = canvas[0];
+      let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
+      let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
+      let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
+
+      infoArea.innerHTML = `<p>Current Score: ${score}</p> ${infoArea.innerHTML}<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
+      document.body.insertBefore(infoArea, canvasTag[0]);
+};
+
 class Player extends User {
     constructor(x, y, speed, sprite = 'images/char-boy.png') {
+        super(x, y, speed);
         this.sprite = sprite;
+    }
+  
+    render() {
+        super.render();
     }
   
     // check user's location against out of bounds, whether it collides with enemy, or wins
@@ -119,12 +159,6 @@ class Player extends User {
             this.reset();
         }
     }
-
-    // display the score at the bottom
-    displayScore(canvasTag) {
-        infoArea.innerHTML = `<p>Current Score: ${score}</p> ${infoArea.innerHTML}`;
-        document.body.insertBefore(infoArea, canvasTag[0]);
-    }
   
     // keep player within the canvas of the game
     boundsCheck() {
@@ -154,25 +188,12 @@ class Player extends User {
         generateRandomEnemies();
 
         // draw the bottom info area
-        this.drawInfoArea();
+        drawInfoArea();
 
         // delay the clearing of a message so player can read it
         setTimeout(function() {
             ctx.clearRect(0, 0, 500, 500);
         }, 750);
-    }
-  
-    // set the directions to output at the bottom of the canvas
-    drawInfoArea() {
-        let canvas = document.getElementsByTagName('canvas');
-        let canvasTag = canvas[0];
-        let directionMessage = 'Move the Character using the arrow keys, touch is not supported.';
-        let changeCharMessage = 'Press: b for boy, c for cat girl, h for horn girl, p for pink girl, g for princess girl.';
-        let additionalMessage = 'To add another enemy, press e. To start a new game, press s.'
-
-        infoArea.innerHTML = `<p>${directionMessage}</p><p>${changeCharMessage}</p><p>${additionalMessage}`;
-        document.body.insertBefore(infoArea, canvasTag[0]);
-        this.displayScore(canvasTag);
     }
 
     // start a new game, reset score, run reset
@@ -182,27 +203,7 @@ class Player extends User {
     }
 }
 
-// global variables
-var player = new Player(200, 380, 100), // set new player in the bottom center
-    allEnemies = [], // create a blank array for enemies to be stored
-    enemyNumber = 3, // enemy amount variable
-    infoArea = document.createElement('div'), // set div where score and instructions go
-    score = 0; // set initial score
-
-
-// create an enemy using randomly generated or assign based on provided parameters
-var generateEnemy = function(x = 0, y = Math.random() * 180 + 60, speed = Math.random() * 200 + 80) {
-    let newEnemy = new Enemy(x, y, speed);
-    allEnemies.push(newEnemy);
-};
-
-// create the enemeyNumber variable amount of enemies using random default parameters
-var generateRandomEnemies = function() {
-    allEnemies.length = 0;
-    for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
-        generateEnemy();
-    }
-};
+var player = new Player(200, 380, 100); // set new player in the bottom center
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

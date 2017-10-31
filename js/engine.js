@@ -49,7 +49,6 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -67,7 +66,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
-        player.drawInfoArea(); // draw bottom info area with score, instructions
+        drawInfoArea(); // draw bottom info area with score, instructions
         lastTime = Date.now();
         main();
     }
