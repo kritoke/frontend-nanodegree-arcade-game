@@ -51,6 +51,7 @@ var generateRandomEnemies = function() {
     }
 };
 
+// class to store the human player
 class Player extends User {
     constructor(x, y, speed, sprite = 'images/char-boy.png') {
         super(x, y, speed);
@@ -78,7 +79,7 @@ class Player extends User {
                 this.sprite = 'images/char-cat-girl.png';
                 break;
             case 'e':
-                generateEnemy();
+                new Enemy();
                 enemyCount++;
                 break;
             case 'g':
