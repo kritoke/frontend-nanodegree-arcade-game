@@ -82,15 +82,15 @@ class Player extends User {
                 break;
         }
     }
+  
+    // put a message at the top of the game canvas
+    sendMessage(message, size, style, color) {
+        ctx.clearRect(0, 0, 500, 500)
+        ctx.fillStyle = color;
+        ctx.font = size + 'pt ' + style + ' serif';
+        ctx.fillText(message, 10, 35);
+    }
 }
-
-// put a message at the top of the game canvas
-Player.prototype.sendMessage = function(message, size, style, color) {
-    ctx.clearRect(0, 0, 500, 500)
-    ctx.fillStyle = color;
-    ctx.font = size + 'pt ' + style + ' serif';
-    ctx.fillText(message, 10, 35);
-};
 
 // reset user's location to start if collided with enemy after telling them they lost
 Player.prototype.loserCheck = function() {
