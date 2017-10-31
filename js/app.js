@@ -119,13 +119,13 @@ class Player extends User {
             this.reset();
         }
     }
-}
 
-// display the score at the bottom
-Player.prototype.displayScore = function(canvasTag) {
-    infoArea.innerHTML = `<p>Current Score: ${score}</p> ${infoArea.innerHTML}`;
-    document.body.insertBefore(infoArea, canvasTag[0]);
-};
+    // display the score at the bottom
+    displayScore(canvasTag) {
+        infoArea.innerHTML = `<p>Current Score: ${score}</p> ${infoArea.innerHTML}`;
+        document.body.insertBefore(infoArea, canvasTag[0]);
+    }
+}
 
 // keep player within the canvas of the game
 Player.prototype.boundsCheck = function() {
