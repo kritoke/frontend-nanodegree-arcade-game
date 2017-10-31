@@ -1,7 +1,7 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-## Game Instructions
+## Game Instructions for Playing
 
 * Use the arrow keys to navigate around the area, it is not touch enabled.
 * To win a game, you must reach the water and not touch one of the ladybugs.
@@ -13,3 +13,7 @@ frontend-nanodegree-arcade-game
   - g for princess girl
 * To add an enemy, press e.
 * To start over, press s.
+
+## Starting the Game in Javascript
+
+Run player.newGame(); to start a new game.

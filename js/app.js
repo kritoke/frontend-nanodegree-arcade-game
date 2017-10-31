@@ -1,6 +1,6 @@
 // global variables
 var allEnemies = [], // create a blank array for enemies to be stored
-    enemyNumber = 3, // enemy amount variable
+    enemyNumber = 3, // amount of enemies on the screen
     score = 0, // set initial score
     infoArea = document.createElement('div'); // set div where score and instructions go
 
@@ -43,7 +43,7 @@ class Enemy extends User {
     }
 }
 
-// create the enemeyNumber variable amount of enemies using random default parameters
+// reset the allEnemies back to zero and recreate the amount in enemyCount using Enemy constructor 
 var generateRandomEnemies = function() {
     allEnemies.length = 0;
     for (let enemyCount = 0; enemyCount < enemyNumber; enemyCount++) {
